@@ -56,9 +56,9 @@ font-size: larger;
 }
 .quiz:hover{
     background-color: rgba(0,0,0,0.34);
-    background-image: url(https://c4.wallpaperflare.com/wallpaper/110/713/191/dragon-ball-dragon-ball-z-son-goku-kid-goku-wallpaper-preview.jpg);
+    background-image: url(goku.jpg);
     background-position: center;
-    animation: goku 5s ease-in-out infinite;
+    animation: goku 3s ease-in-out infinite;
 }
 .logo{
     display: flex;
@@ -79,25 +79,26 @@ img{
 
 
 @keyframes goku {
-    0%{
-        transform: rotate(0deg);
+    0% {
+        background-position: center;
     }
-    33%{
-        transform: rotate(90deg);
+    33% {
+        background-position: top left;
     }
     66%{
-        transform: rotate(180deg);
+        background-position: top right;
     }
-    100%{
-        transform: rotate(360deg);
+    100% {
+        background-position: centre;
     }
-    
 }
 
 .next{
     margin: auto;
     justify-self: center;
-    transform: translate(45vw,5vh);
+    transform: translate(48
+    
+    vw,5vh);
     border-radius: 30px;
     padding:15px;
     font-family: sans-serif;
