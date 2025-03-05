@@ -5,9 +5,14 @@ background:linear-gradient(to right,    rgb(255, 153, 0),rgb(12, 12, 144));
     align-content: center;
     
 }
+
 *{
     margin: 0;
     padding: 0;
+}
+@font-face {
+    font-family: 'myfont';
+    src: url('fonts/saiyan_sans.ttf') format('truetype'); 
 }
 .quiz{
     margin: auto;
@@ -59,6 +64,8 @@ font-size: larger;
     background-image: url(goku.jpg);
     background-position: center;
     animation: goku 3s ease-in-out infinite;
+    background-size: cover;
+    transform: scale(1.05);
 }
 .logo{
     display: flex;
@@ -66,9 +73,14 @@ font-size: larger;
     align-items: center;
     align-content: center;
     justify-content: space-around;
-    margin-right: 30VW;
-    font-size: xx-large;
-    font-family:Saiyan-Sans;
+    margin-right: 25VW;
+    font-size:55px;
+    font-family: sans-serif;
+    -webkit-text-fill-color: aliceblue;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+    
+    font-family: 'myfont';
 }
 img{
     height: 15vh;
@@ -96,9 +108,7 @@ img{
 .next{
     margin: auto;
     justify-self: center;
-    transform: translate(48
-    
-    vw,5vh);
+    transform: translate(48vw,5vh);
     border-radius: 30px;
     padding:15px;
     font-family: sans-serif;
