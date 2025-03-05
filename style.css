@@ -61,8 +61,11 @@ font-size: larger;
     align-content: center;
     justify-content: space-around;
     margin-right: 30VW;
+    font-size: xx-large;
 }
 img{
     height: 15vh;
     width: auto;
+    border-radius: 100%;
+
 }
