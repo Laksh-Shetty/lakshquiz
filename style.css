@@ -35,18 +35,23 @@ font-size: larger;
     font-family: sans-serif;
     color: white;
     padding: 20px;
-    top: 0;
-    margin: 10px;
+    margin-bottom: 25px;
     width: 25vw;
     height: 3vh;
     border: 1px solid white;
     border-radius: 5px;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
+     
 }
 .options:hover{
     transform: scale(1.3);
     background:linear-gradient(to right,    rgb(255, 153, 0),rgb(12, 12, 144));
     box-shadow: 2px 2px 1px 0.5px white;
+    cursor: pointer;
     
 }
 .quiz:hover{
@@ -62,10 +67,21 @@ font-size: larger;
     justify-content: space-around;
     margin-right: 30VW;
     font-size: xx-large;
+    font-family:Saiyan-Sans;
 }
 img{
     height: 15vh;
     width: auto;
     border-radius: 100%;
-
+}
+.next{
+    margin: auto;
+    justify-self: center;
+    transform: translate(45vw,5vh);
+    border-radius: 30px;
+    padding:15px;
+    font-family: sans-serif;
+    background:linear-gradient(to right,rgb(12, 12, 144),  rgb(255, 153, 0)) ;
+    border: 0.5px solid white;
+    cursor: pointer;
 }
