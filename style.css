@@ -152,6 +152,10 @@ img{
         width: 90vw;
         height: auto;
         padding: 10px;
+        
+    }
+    .logo{
+        transform: translateY(-10vh);
     }
 
     .question {
@@ -169,6 +173,8 @@ img{
         width: 80%;
         padding: 10px 20px;
         font-size: 16px;
+        justify-self: center;
+        transform: translate(5vh, 5vh);
     }
 }
 
