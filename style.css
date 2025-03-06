@@ -1,5 +1,5 @@
 .container{
-background:linear-gradient(to right,    rgb(255, 145, 0),rgb(12, 12, 144));
+background:linear-gradient(to right, rgb(255, 145, 0) ,rgb(23, 20, 20), rgb(12, 12, 144));
 filter: brightness(1.2);
     height: 100vh;
     align-items: center;
