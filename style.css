@@ -28,14 +28,18 @@ filter: brightness(1.2);
     border: 1.5px solid white;
     border-radius: 30px;
 }
-.question{
-    font-size:x-large;
-    font-family: sans-serif;
+.question {
+    font-size: 42px;
+    font-family: 'myfont', sans-serif;
     color: white;
     padding: 20px;
-    top: 0;
     margin-top: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
+
 .options{
 font-size: larger;
     font-family: sans-serif;
@@ -69,6 +73,7 @@ font-size: larger;
     animation: goku 3s ease-in-out infinite;
     background-size: cover;
     transform: scale(1.05);
+    filter: brightness(0.8);
 }
 .logo{
     display: flex;
