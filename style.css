@@ -75,6 +75,7 @@ font-size: larger;
     transform: scale(1.05);
     filter: brightness(0.8);
 }
+
 .logo{
     display: flex;
     top: 0;
