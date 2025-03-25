@@ -26,11 +26,12 @@ const nextButton = document.querySelector('.next');
 function loadQuestion() {
     const currentQuestion = quizData[currentQuestionIndex];
     document.querySelectorAll('.quiz').forEach(q => q.style.display = 'none');
-    document.querySelectorAll('.quiz')[currentQuestionIndex].style.display = 'block';
+    const activeQuiz = document.querySelectorAll('.quiz')[currentQuestionIndex];
+    activeQuiz.style.display = 'block';
     questionElement.textContent = currentQuestion.question;
-    document.querySelectorAll('.quiz')[currentQuestionIndex].querySelectorAll('.option').forEach((btn, i) => {
+    activeQuiz.querySelectorAll('.option').forEach((btn, i) => {
         btn.textContent = currentQuestion.options[i];
-        btn.style.backgroundColor = '';
+        btn.style.backgroundColor = 'white';
         btn.disabled = false;
     });
 }
@@ -38,16 +39,24 @@ function loadQuestion() {
 function handleAnswer(event) {
     let selected = event.target.textContent;
     let correct = quizData[currentQuestionIndex].correct;
-    selected === correct ? event.target.style.backgroundColor = 'green' : event.target.style.backgroundColor = 'red';
-    document.querySelectorAll('.option').forEach(btn => {
-        if (btn.textContent === correct) btn.style.backgroundColor = 'green';
-        btn.disabled = true;
-    });
+    if (selected === correct) {
+        event.target.style.backgroundColor = 'green';
+    } else {
+        event.target.style.backgroundColor = 'red';
+        document.querySelectorAll('.option').forEach(btn => {
+            if (btn.textContent === correct) btn.style.backgroundColor = 'green';
+        });
+    }
+    document.querySelectorAll('.option').forEach(btn => btn.disabled = true);
 }
 
 function nextQuestion() {
     currentQuestionIndex++;
-    currentQuestionIndex < totalQuestions ? loadQuestion() : alert('Quiz completed!');
+    if (currentQuestionIndex < totalQuestions) {
+        loadQuestion();
+    } else {
+        alert('Quiz completed!');
+    }
 }
 
 optionButtons.forEach(btn => btn.addEventListener('click', handleAnswer));
