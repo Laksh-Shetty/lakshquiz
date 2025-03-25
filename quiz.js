@@ -16,52 +16,77 @@ const quizData = [
     }
 ];
 
-let currentQuestionIndex = 0;
+let currentQuestionIndex = 0; 
 let totalQuestions = quizData.length;
 
 const questionElement = document.querySelector('.question');
+const optionButtons = document.querySelectorAll('.options');
 const nextButton = document.querySelector('.next');
+
 
 function loadQuestion() {
     const currentQuestion = quizData[currentQuestionIndex];
-    document.querySelectorAll('.quiz').forEach(q => q.style.display = 'none');
-    const activeQuiz = document.querySelectorAll('.quiz')[currentQuestionIndex];
-    activeQuiz.style.display = 'block';
+
+
+    const allQuizDivs = document.querySelectorAll('.quiz');
+    allQuizDivs.forEach((quizDiv) => {
+        quizDiv.style.display = 'none';
+    });
+
+  
+    const currentQuizDiv = allQuizDivs[currentQuestionIndex];
+    currentQuizDiv.style.display = 'block';
+
     questionElement.textContent = currentQuestion.question;
-    activeQuiz.querySelectorAll('.option').forEach((btn, i) => {
-        btn.textContent = currentQuestion.options[i];
-        btn.style.backgroundColor = ''; 
-        btn.disabled = false;
-        btn.addEventListener('click', handleAnswer);
+    
+   
+    const currentButtons = currentQuizDiv.querySelectorAll('.options');
+    currentButtons.forEach((button, index) => {
+        button.textContent = currentQuestion.options[index];
+        button.style.backgroundColor = ''; 
+        button.disabled = false; 
     });
 }
 
-function handleAnswer(event) {
-    let selected = event.target;
-    let correctAnswer = quizData[currentQuestionIndex].correct;
-    let optionButtons = document.querySelectorAll('.quiz')[currentQuestionIndex].querySelectorAll('.option');
-    
-    if (selected.textContent === correctAnswer) {
-        selected.style.backgroundColor = 'green';
+function handleAnswerSelection(event) {
+    const selectedAnswer = event.target.textContent;
+    const correctAnswer = quizData[currentQuestionIndex].correct;
+
+    if (selectedAnswer === correctAnswer) {
+        event.target.style.backgroundColor = 'green';
     } else {
-        selected.style.backgroundColor = 'red';
-        optionButtons.forEach(btn => {
-            if (btn.textContent === correctAnswer) {
-                btn.style.backgroundColor = 'green';
+        event.target.style.backgroundColor = 'red';
+        
+        optionButtons.forEach((button) => {
+            if (button.textContent === correctAnswer) {
+                button.style.backgroundColor = 'green';
             }
         });
     }
-    optionButtons.forEach(btn => btn.disabled = true);
+
+   
+    optionButtons.forEach(button => button.disabled = true);
 }
+
 
 function nextQuestion() {
     currentQuestionIndex++;
+    
     if (currentQuestionIndex < totalQuestions) {
         loadQuestion();
     } else {
         alert('Quiz completed!');
+        
     }
 }
 
+
+optionButtons.forEach(button => {
+    button.addEventListener('click', handleAnswerSelection);
+});
+
+
 nextButton.addEventListener('click', nextQuestion);
+
+
 loadQuestion();
