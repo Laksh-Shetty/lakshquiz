@@ -1,4 +1,3 @@
-
 const quizData = [
     {
         question: "Who is the strongest human?",
@@ -17,77 +16,40 @@ const quizData = [
     }
 ];
 
-let currentQuestionIndex = 0; 
+let currentQuestionIndex = 0;
 let totalQuestions = quizData.length;
 
 const questionElement = document.querySelector('.question');
-const optionButtons = document.querySelectorAll('.options');
+const optionButtons = document.querySelectorAll('.option');
 const nextButton = document.querySelector('.next');
-
 
 function loadQuestion() {
     const currentQuestion = quizData[currentQuestionIndex];
-
-
-    const allQuizDivs = document.querySelectorAll('.quiz');
-    allQuizDivs.forEach((quizDiv) => {
-        quizDiv.style.display = 'none';
-    });
-
-  
-    const currentQuizDiv = allQuizDivs[currentQuestionIndex];
-    currentQuizDiv.style.display = 'block';
-
+    document.querySelectorAll('.quiz').forEach(q => q.style.display = 'none');
+    document.querySelectorAll('.quiz')[currentQuestionIndex].style.display = 'block';
     questionElement.textContent = currentQuestion.question;
-    
-   
-    const currentButtons = currentQuizDiv.querySelectorAll('.options');
-    currentButtons.forEach((button, index) => {
-        button.textContent = currentQuestion.options[index];
-        button.style.backgroundColor = ''; 
-        button.disabled = false; 
+    document.querySelectorAll('.quiz')[currentQuestionIndex].querySelectorAll('.option').forEach((btn, i) => {
+        btn.textContent = currentQuestion.options[i];
+        btn.style.backgroundColor = '';
+        btn.disabled = false;
     });
 }
 
-function handleAnswerSelection(event) {
-    const selectedAnswer = event.target.textContent;
-    const correctAnswer = quizData[currentQuestionIndex].correct;
-
-    if (selectedAnswer === correctAnswer) {
-        event.target.style.backgroundColor = 'green';
-    } else {
-        event.target.style.backgroundColor = 'red';
-        
-        optionButtons.forEach((button) => {
-            if (button.textContent === correctAnswer) {
-                button.style.backgroundColor = 'green';
-            }
-        });
-    }
-
-   
-    optionButtons.forEach(button => button.disabled = true);
+function handleAnswer(event) {
+    let selected = event.target.textContent;
+    let correct = quizData[currentQuestionIndex].correct;
+    selected === correct ? event.target.style.backgroundColor = 'green' : event.target.style.backgroundColor = 'red';
+    document.querySelectorAll('.option').forEach(btn => {
+        if (btn.textContent === correct) btn.style.backgroundColor = 'green';
+        btn.disabled = true;
+    });
 }
-
 
 function nextQuestion() {
     currentQuestionIndex++;
-    
-    if (currentQuestionIndex < totalQuestions) {
-        loadQuestion();
-    } else {
-        alert('Quiz completed!');
-        
-    }
+    currentQuestionIndex < totalQuestions ? loadQuestion() : alert('Quiz completed!');
 }
 
-
-optionButtons.forEach(button => {
-    button.addEventListener('click', handleAnswerSelection);
-});
-
-
+optionButtons.forEach(btn => btn.addEventListener('click', handleAnswer));
 nextButton.addEventListener('click', nextQuestion);
-
-
 loadQuestion();
