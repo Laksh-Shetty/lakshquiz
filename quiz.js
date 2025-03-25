@@ -20,7 +20,6 @@ let currentQuestionIndex = 0;
 let totalQuestions = quizData.length;
 
 const questionElement = document.querySelector('.question');
-const optionButtons = document.querySelectorAll('.option');
 const nextButton = document.querySelector('.next');
 
 function loadQuestion() {
@@ -31,23 +30,28 @@ function loadQuestion() {
     questionElement.textContent = currentQuestion.question;
     activeQuiz.querySelectorAll('.option').forEach((btn, i) => {
         btn.textContent = currentQuestion.options[i];
-        btn.style.backgroundColor = 'white';
+        btn.style.backgroundColor = ''; 
         btn.disabled = false;
+        btn.addEventListener('click', handleAnswer);
     });
 }
 
 function handleAnswer(event) {
-    let selected = event.target.textContent;
-    let correct = quizData[currentQuestionIndex].correct;
-    if (selected === correct) {
-        event.target.style.backgroundColor = 'green';
+    let selected = event.target;
+    let correctAnswer = quizData[currentQuestionIndex].correct;
+    let optionButtons = document.querySelectorAll('.quiz')[currentQuestionIndex].querySelectorAll('.option');
+    
+    if (selected.textContent === correctAnswer) {
+        selected.style.backgroundColor = 'green';
     } else {
-        event.target.style.backgroundColor = 'red';
-        document.querySelectorAll('.option').forEach(btn => {
-            if (btn.textContent === correct) btn.style.backgroundColor = 'green';
+        selected.style.backgroundColor = 'red';
+        optionButtons.forEach(btn => {
+            if (btn.textContent === correctAnswer) {
+                btn.style.backgroundColor = 'green';
+            }
         });
     }
-    document.querySelectorAll('.option').forEach(btn => btn.disabled = true);
+    optionButtons.forEach(btn => btn.disabled = true);
 }
 
 function nextQuestion() {
@@ -59,6 +63,5 @@ function nextQuestion() {
     }
 }
 
-optionButtons.forEach(btn => btn.addEventListener('click', handleAnswer));
 nextButton.addEventListener('click', nextQuestion);
 loadQuestion();
