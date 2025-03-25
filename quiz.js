@@ -1,4 +1,4 @@
-const quizData = [
+const quizData = [ 
     {
         question: "Who is the strongest human?",
         options: ["Goku", "Krillin", "Vegeta", "Piccolo"],
